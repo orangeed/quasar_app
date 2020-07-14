@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header elevated class="glossy">
+    <q-header elevated class="glossy head">
       <q-toolbar>
         <q-btn
           flat
@@ -14,7 +14,48 @@
 
         <q-toolbar-title>橘子的分享</q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
+        <!-- <div>Quasar v{{ $q.version }}</div> -->
+        <div class="q-pa-sm">
+          <q-icon name="home" class="q-pa-sm" />首页
+        </div>
+        <div class="q-pa-sm">
+          <q-icon name="watch_later" class="q-pa-sm" />时间轴
+        </div>
+        <div class="q-pa-sm">
+          <q-icon name="screen_share" class="q-pa-sm" />常用网站
+        </div>
+        <div class="q-pa-sm">
+          <q-icon name="note" class="q-pa-sm" />便签
+        </div>
+        <div class="q-pa-sm">
+          <q-icon name="folder" class="q-pa-sm" />分类
+        </div>
+        <div class="q-pa-sm">
+          <q-icon name="chat_bubble" class="q-pa-sm" />留言
+        </div>
+        <div class="q-pa-sm">
+          <q-icon name="reorder" class="q-pa-sm" />
+          <q-menu transition-show="jump-down" transition-hide="jump-up">
+            <q-list style="min-width: 100px">
+              <q-item clickable>
+                <q-icon name="insert_photo" class="q-pa-sm"/>
+                <q-item-section>照片</q-item-section>
+              </q-item>
+              <q-item clickable>
+                <q-icon name="audiotrack" class="q-pa-sm"/>
+                <q-item-section>音乐</q-item-section>
+              </q-item>
+              <q-separator />
+              <q-item clickable>
+                <q-icon name="movie" class="q-pa-sm"/>
+                <q-item-section>影视</q-item-section>
+              </q-item>
+            </q-list>
+          </q-menu>多媒体
+        </div>
+        <div class="q-pa-sm">
+          <q-icon name="favorite" class="q-pa-sm" />关于
+        </div>
       </q-toolbar>
     </q-header>
 
@@ -29,7 +70,7 @@
         <q-item-label header>Essential Links</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
           <q-item-section avatar>
-            <q-icon name="school"/>
+            <q-icon name="school" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Docs</q-item-label>
@@ -38,7 +79,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
           <q-item-section avatar>
-            <q-icon name="code"/>
+            <q-icon name="code" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Github</q-item-label>
@@ -47,7 +88,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
           <q-item-section avatar>
-            <q-icon name="chat"/>
+            <q-icon name="chat" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Discord Chat Channel</q-item-label>
@@ -56,7 +97,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
           <q-item-section avatar>
-            <q-icon name="forum"/>
+            <q-icon name="forum" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Forum</q-item-label>
@@ -65,7 +106,7 @@
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
           <q-item-section avatar>
-            <q-icon name="rss_feed"/>
+            <q-icon name="rss_feed" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Twitter</q-item-label>
@@ -75,21 +116,21 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <HelloWorld/>
+    <q-page-container style="padding-top:0px">
+      <router-view />
     </q-page-container>
   </q-layout>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+// import HelloWorld from "./components/HelloWorld.vue";
 
 export default {
   name: "LayoutDefault",
 
-  components: {
-    HelloWorld
-  },
+  // components: {
+  //   HelloWorld
+  // },
 
   data() {
     return {
@@ -151,5 +192,8 @@ export default {
 };
 </script>
 
-<style>
+<style lang='scss' scoped>
+.head {
+  background: rgba($color: #ffffff, $alpha: 0);
+}
 </style>
