@@ -1,17 +1,22 @@
 <template>
   <div class="home">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      <HelloWorld/>
+    </div>
+    <q-page class="flex flex-center">
+      <img alt="Quasar logo" src="../assets/logo.png">
+    </q-page>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import HelloWorld from "@/components/HelloWorld.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: {
     HelloWorld
   }
-}
+};
 </script>
