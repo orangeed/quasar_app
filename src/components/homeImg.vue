@@ -3,16 +3,19 @@
     <q-img class="img" src="https://s1.ax1x.com/2020/07/04/Nvarv9.jpg">
       <div class="absolute-full text-subtitle2 flex flex-center bg-transparent q-mb-xl">
         <p
-          :class="$store.state.isMobile ?'text-h4 text-weight-bold' : 'text-h3 text-weight-bold'"
+          :class="$store.state.isMobile ?'text-h5 text-weight-bold' : 'text-h3 text-weight-bold'"
         >橘子的分享</p>
       </div>
       <div class="absolute-full text-subtitle2 flex flex-center bg-transparent q-mt-xl">
         <p
-          :class=" $store.state.isMobile ? 'text-grey-11 text-h6 typing' : 'text-grey-11 text-h5 typing'"
+          :class=" $store.state.isMobile ? 'text-grey-11 text-h7 typing' : 'text-grey-11 text-h5 typing'"
         >
-          <span ref="hitokoto">{{sentence.hitokoto}}</span>
+          <span ref="hitokoto"></span>
           <i class="caret"></i>
         </p>
+      </div>
+      <div class="absolute-bottom text-subtitle1 text-center bg-transparent">
+        <q-icon name="keyboard_arrow_down" class="down" style="font-size:40px"/>
       </div>
     </q-img>
   </div>
@@ -23,7 +26,7 @@
 
 <script>
 export default {
-  name: "HelloWorld",
+  name: "homeImg",
   data() {
     return {
       //今日语句
@@ -41,7 +44,9 @@ export default {
       // 获取显示文字的dom元素
       let textEl = this.$refs.hitokoto;
       // 获取文本
-      let texts = this.sentence.hitokoto;
+      let texts = [this.sentence.hitokoto];
+      // 当前显示文本数组中的第几个
+      let index = 0;
       // 当前显示第几个字
       let charIndex = 0;
       // 每个字显示间隔默认是500毫秒
@@ -59,21 +64,23 @@ export default {
         let progress = time - start;
         // 每隔一定的时间，打印出一个新的字符
         if (progress > delta) {
+          // 获取完整的字符
+          let text = texts[index];
           // 如果是打字效果
           if (!isDeleting) {
             // 给展示文字的p新增一个字符，使用innerHTML来替换，charIndex自增1，然后返回新的字符串子串
-            textEl.innerHTML = texts.slice(0, ++charIndex);
+            textEl.innerHTML = text.slice(0, ++charIndex);
             // 每个字符打印出来的速度不一样，模仿人工打字的速度
             delta = 500 - Math.random() * 400;
           } else {
             // 如果是删除效果，则把文字一个一个减掉
-            textEl.innerHTML = texts.slice(0, charIndex--);
+            textEl.innerHTML = text.slice(0, charIndex--);
           }
           // 把star更新为当前时间，进行下一个周期
           start = time;
 
           // 如果文字已经全部打印完毕
-          if (charIndex === texts.length) {
+          if (charIndex === text.length) {
             // 下次开始删除文字
             isDeleting = true;
             // 删除文字的间隔为200毫秒
@@ -84,16 +91,16 @@ export default {
           }
           // 如果文字删除完毕
           if (charIndex < 0) {
-            console.log("textEl", textEl);
-            // textEl.innerHTML = "";
-            this.getSentence();
+            this.$axios({
+              method: "get",
+              url: "https://v1.hitokoto.cn/"
+            }).then(res => {
+              // this.sentence = { ...res.data };
+              texts = [res.data.hitokoto];
+            });
             isDeleting = false;
             // 额外增加200毫秒延迟
             start = time + 200;
-            // textEl.innerHTML = "";
-
-            // 把index移动到下一个文本，并且在文本数组元素个数中循环
-            // index = ++index % texts.length;
           }
         }
       };
@@ -105,23 +112,24 @@ export default {
         method: "get",
         url: "https://v1.hitokoto.cn/"
       }).then(res => {
-        console.log("res", res);
         this.sentence = { ...res.data };
-        console.log("sentence", this.sentence);
-        // this.write();
         setTimeout(() => {
           this.write();
-        }, 200);
+        }, 1000);
       });
     }
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" >
 .img {
   // width: 100vw;
   height: 100vh;
+  .q-img__image {
+    background-attachment: fixed;
+  }
 }
+//打字效果光标动画
 .caret::after {
   content: "";
   display: inline-block;
@@ -136,5 +144,26 @@ export default {
   50% {
     opacity: 0;
   }
+}
+// 提示向下动画
+.down {
+  animation: down 1.5s ease infinite;
+}
+@keyframes down {
+  0% {
+    opacity: 1;
+    top: 0px;
+  }
+  50% {
+    opacity: 0.3;
+    top: 10px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+.text-h7 {
+  font-size: 1rem;
 }
 </style>
