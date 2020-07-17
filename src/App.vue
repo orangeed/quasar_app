@@ -266,4 +266,7 @@ footer {
     text-align: center;
   }
 }
+.q-card {
+  border-radius: 8px !important;
+}
 </style>
