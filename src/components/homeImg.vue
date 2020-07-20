@@ -3,7 +3,7 @@
     <q-img class="img" src="https://s1.ax1x.com/2020/07/04/Nvarv9.jpg">
       <div class="absolute-full text-subtitle2 flex flex-center bg-transparent q-mb-xl">
         <p
-          :class="$store.state.isMobile ?'text-h5 text-weight-bold' : 'text-h3 text-weight-bold'"
+          :class="$store.state.isMobile ? 'text-h5 text-weight-bold' : 'text-h3 text-weight-bold'"
         >橘子的分享</p>
       </div>
       <div class="absolute-full text-subtitle2 flex flex-center bg-transparent q-mt-xl">
@@ -13,6 +13,52 @@
           <span ref="hitokoto"></span>
           <i class="caret"></i>
         </p>
+      </div>
+      <div
+        class="absolute-full text-subtitle1 flex flex-center text-center bg-transparent"
+        style="margin-top:150px"
+        v-if="$store.state.isMobile"
+      >
+        <div class="text-center">
+          <span>
+            <font-awesome-icon
+              :icon="['fab','github']"
+              class="q-mr-md avatar"
+              @click="github"
+              style="font-size:20px"
+            />
+            <q-tooltip :offset="[10, 10]">https://github.com/orangeed</q-tooltip>
+          </span>
+          <span>
+            <font-awesome-icon
+              :icon="['fab','weixin']"
+              class="q-mr-md avatar"
+              @click="wechat"
+              style="font-size:20px"
+            />
+            <q-tooltip content-class="bg-green" :offset="[10, 10]">
+              <img src="https://s1.ax1x.com/2020/07/04/NxncdA.jpg" alt="公众号——橘子的分享">
+            </q-tooltip>
+          </span>
+          <span>
+            <font-awesome-icon
+              :icon="['fab','zhihu']"
+              class="q-mr-md avatar"
+              style="font-size:20px"
+              @click="zhihu"
+            />
+            <q-tooltip
+              content-class="bg-blue"
+              :offset="[10, 10]"
+            >https://www.zhihu.com/people/bu-qi-64-11</q-tooltip>
+          </span>
+          <span>
+            <a href="mailto: 1208917130@qq.com" style="text-decoration: none;color:#fff">
+              <font-awesome-icon :icon="['fas','envelope']" class="avatar" style="font-size:20px"/>
+              <q-tooltip content-class="bg-red" :offset="[10, 10]">1208917130@qq.com</q-tooltip>
+            </a>
+          </span>
+        </div>
       </div>
       <div class="absolute-bottom text-subtitle1 text-center bg-transparent">
         <q-icon name="keyboard_arrow_down" class="down" style="font-size:40px"/>
@@ -117,6 +163,18 @@ export default {
           this.write();
         }, 1000);
       });
+    },
+    github() {
+      window.open("https://github.com/orangeed", "_blank");
+    },
+    wechat() {
+      window.open(
+        "https://mp.weixin.qq.com/mp/homepage?__biz=MzUxMTk4NjIzNw==&hid=1&sn=0dba6663f8903af2fa1b50796291c53f&scene=18#wechat_redirect",
+        "_blank"
+      );
+    },
+    zhihu() {
+      window.open("https://www.zhihu.com/people/bu-qi-64-11", "_blank");
     }
   }
 };

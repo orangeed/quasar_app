@@ -1,11 +1,13 @@
 import homeImg from './homeImg.vue'
 import headImg from './headImg.vue';
 import baseView from './baseView.vue'
+import Notify from './Notify.vue'
 
 const componentList = [
     headImg,
     baseView,
-    homeImg
+    homeImg,
+    Notify
 ]
 
 // 添加install方法 （插件方法）

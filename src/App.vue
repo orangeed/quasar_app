@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header class="head">
+    <q-header class="head" reveal>
       <q-toolbar>
         <q-btn
           flat
@@ -153,21 +153,21 @@
         </div>
       </q-img>
     </q-drawer>
-    <q-scroll-area
+    <!-- <q-scroll-area
       :thumb-style="{ borderRadius: '5px', background: '#3595e8', width: '7px', opacity: 1 }"
       :bar-style="{ borderRadius: '5px', background: '#cce5f9', width: '7px', opacity: 1 }"
       style="height: 100vh; width:100vw"
-    >
-      <q-page-container style="padding-top:0px">
-        <router-view/>
-      </q-page-container>
-      <footer>
-        <div class="footer-wrap">
-          <div class="copyright">©2020 By 橘子orange</div>
-          <div class="footer_custom_text">这是橘子orange的个人博客哟！</div>
-        </div>
-      </footer>
-    </q-scroll-area>
+    >-->
+    <q-page-container style="padding-top:0px">
+      <router-view/>
+    </q-page-container>
+    <footer>
+      <div class="footer-wrap">
+        <div class="copyright">©2020 By 橘子orange</div>
+        <div class="footer_custom_text">这是橘子orange的个人博客哟！</div>
+      </div>
+    </footer>
+    <!-- </q-scroll-area> -->
   </q-layout>
 </template>
 
