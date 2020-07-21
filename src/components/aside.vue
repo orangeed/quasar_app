@@ -1,240 +1,9 @@
-<!--
 <template>
   <div class="home">
-    <homeImg/>
-    <orange-aside>
-      <template>
-        <div :class="$store.state.isMobile ? 'left-mobile' : 'left' ">
-          <div v-if="$store.state.isMobile">
-            <q-card class="my-card" basic flat v-for="(item,index) in articleList" :key="index">
-              <img :src="item.img">
-              <q-card-section>
-                <div class="right-text q-mt-md q-mb-md">
-                  <div class="text-h6">{{item.title}}</div>
-                  <div>
-                    <span>
-                      <q-icon name="date_range"/>
-                      {{item.createTime}}
-                    </span> |
-                    <span>
-                      <q-icon name="loyalty"/>
-                      {{item.tag}}
-                    </span>
-                  </div>
-                  <div class="description">{{item.description}}</div>
-                </div>
-              </q-card-section>
-            </q-card>
-          </div>
-          <div v-else>
-            <q-card class="my-card" basic flat v-for="(item,index) in articleList" :key="index">
-              <q-card-section horizontal>
-                <img class="col-5" :src="item.img">
-                <q-card-section>
-                  <div class="right-text">
-                    <div class="text-h6">{{item.title}}</div>
-                    <div>
-                      <span>
-                        <q-icon name="date_range"/>
-                        {{item.createTime}}
-                      </span> |
-                      <span>
-                        <q-icon name="loyalty"/>
-                        {{item.tag}}
-                      </span>
-                    </div>
-                    <div class="description">{{item.description}}</div>
-                  </div>
-                </q-card-section>
-              </q-card-section>
-            </q-card>
-          </div>
-        </div>
-      </template>
-    </orange-aside>
-    <Notify NotifyText="按 CTRL+ D 键将本页加入书签." color="success" :isShow="isShow"/>
-  </div>
-</template>
-
-<script>
-export default {
-  name: "Home",
-  data() {
-    return {
-      articleList: [
-        {
-          title: "这是第一篇文章",
-          img: "https://s1.ax1x.com/2020/06/24/NwAQ39.md.jpg",
-          createTime: "2020-07-16",
-          tag: "教程",
-          description:
-            "不知道是多少天了，在无数个难眠的夜晚，我辗转反侧，想有自己的台式电脑，最好是自己组装的，正好，今年刚刚毕业，又赶上了618活动，就开始买买买（虽然自己是在之前两天买的）！ "
-        }
-      ],
-      //是否显示弹出框
-      isShow: false
-    };
-  },
-
-  create() {},
-  methods: {
-    github() {
-      window.open("https://github.com/orangeed", "_blank");
-    },
-    wechat() {
-      window.open(
-        "https://mp.weixin.qq.com/mp/homepage?__biz=MzUxMTk4NjIzNw==&hid=1&sn=0dba6663f8903af2fa1b50796291c53f&scene=18#wechat_redirect",
-        "_blank"
-      );
-    },
-    zhihu() {
-      window.open("https://www.zhihu.com/people/bu-qi-64-11", "_blank");
-    },
-    addLabel() {
-      this.isShow = true;
-      setTimeout(() => {
-        this.isShow = false;
-      }, 3000);
-      // this.seamless = true;
-    }
-  }
-};
-</script>
-<style lang="scss" scoped>
-.home {
-  // height: 100%;
-  // background: url("https://s1.ax1x.com/2020/07/04/Nv2rxP.jpg");
-  // background-size: cover;
-  // background-attachment: fixed;
-
-  // .my-row {
-  // display: flex;
-  // align-items: flex-start;
-  // margin: 0 auto;
-  // padding: 2rem 15px;
-  // max-width: 1200px;
-  // flex-wrap: wrap;
-  // .left {
-  //   flex: 3;
-  //   .description {
-  //     /* 多余内容省略号处理-多行 */
-  //     word-break: break-all;
-  //     text-overflow: ellipsis;
-  //     display: -webkit-box;
-  //     -webkit-box-orient: vertical;
-  //     -webkit-line-clamp: 3;
-  //     overflow: hidden;
-  //   }
-  // }
-  // .left-mobile {
-  //   .description {
-  //     /* 多余内容省略号处理-多行 */
-  //     word-break: break-all;
-  //     text-overflow: ellipsis;
-  //     display: -webkit-box;
-  //     -webkit-box-orient: vertical;
-  //     -webkit-line-clamp: 3;
-  //     overflow: hidden;
-  //   }
-  // }
-  // .right {
-  //   // padding: 20px;
-  //   flex: 1;
-  //   // 头像旋转
-  //   .avatar {
-  //     transition: all 0.3s ease-in;
-  //     &:hover {
-  //       transform: rotate(360deg);
-  //       transform-origin: center;
-  //     }
-  //   }
-  // }
-  // }
-  .q-img__content > div {
-    position: static;
-    color: #696969;
-  }
-
-  .q-card__section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .q-card__section--vert {
-    padding: 0 40px;
-    line-height: 20px;
-    overflow: hidden;
-    -webkit-line-clamp: 3;
-    line-height: 30px;
-  }
-  .tag {
-    display: flex;
-    flex-direction: row;
-    text-align: center;
-    font-size: 16px;
-    .tag-item {
-      display: flex;
-      width: 33.3%;
-      flex-direction: column;
-      // font-size: 14px;
-    }
-  }
-  .bookmark {
-    width: 100%;
-    height: 32px;
-    background-color: #49b1f5;
-    text-align: center;
-    line-height: 32px;
-    color: #ffffff;
-    cursor: pointer;
-    position: relative;
-    border-radius: 4px;
-    z-index: 1;
-
-    .icon {
-      font-size: 18px;
-    }
-  }
-  .bookmark:after,
-  .bookmark:before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    border-radius: 4px;
-  }
-  .bookmark:before {
-    width: 100%;
-    z-index: -2;
-    background: #49b1f5;
-  }
-  .bookmark:after {
-    width: 0;
-    background: #ff7242;
-    transition: width 0.5s;
-    overflow: hidden;
-    z-index: -2;
-  }
-  .bookmark:hover:after {
-    z-index: -2;
-    width: 100%;
-    transition: width 0.5s cubic-bezier(0.82, 1.77, 0.7, 0.56); //三次方贝塞尔函数回弹效果
-  }
-}
-</style>
- -->
-
-
-
-<template>
-  <div class="home">
-    <div>
-      <homeImg/>
-    </div>
     <q-page>
       <div class="my-row bg-transparent">
-        <div :class="$store.state.isMobile ? 'left-mobile' : 'left' ">
+        <slot/>
+        <!-- <div :class="$store.state.isMobile ? 'left-mobile' : 'left' ">
           <div v-if="$store.state.isMobile">
             <q-card class="my-card" basic flat v-for="(item,index) in articleList" :key="index">
               <img :src="item.img">
@@ -279,7 +48,7 @@ export default {
               </q-card-section>
             </q-card>
           </div>
-        </div>
+        </div>-->
         <div :class="$store.state.isMobile ? 'q-mt-xl' : 'right q-ml-lg'">
           <q-card class="my-card">
             <div class="q-pa-lg">
@@ -387,30 +156,12 @@ export default {
       </div>
     </q-page>
     <Notify NotifyText="按 CTRL+ D 键将本页加入书签." color="success" :isShow="isShow"/>
-    <!-- <q-dialog v-model="seamless" seamless position="top">
-      <q-card style="width: 350px">
-        <q-linear-progress :value="0.6" color="pink"/>
-
-        <q-card-section class="row items-center no-wrap">
-          <div>
-            <div class="text-weight-bold">The Walker</div>
-            <div class="text-grey">Fitz & The Tantrums</div>
-          </div>
-
-          <q-space/>
-
-          <q-btn flat round icon="play_arrow"/>
-          <q-btn flat round icon="pause"/>
-          <q-btn flat round icon="close" v-close-popup/>
-        </q-card-section>
-      </q-card>
-    </q-dialog>-->
   </div>
 </template>
 
 <script>
 export default {
-  name: "Home",
+  name: "orange-aside",
   data() {
     return {
       articleList: [
@@ -452,7 +203,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss" scoped >
 .home {
   // height: 100%;
   background: url("https://s1.ax1x.com/2020/07/04/Nv2rxP.jpg");

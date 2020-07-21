@@ -13,25 +13,25 @@
 
         <q-toolbar-title :class="isMobile ? 'title' : 'title q-ml-md'" @click="toHome">橘子的分享</q-toolbar-title>
 
-        <div class="q-pa-sm" v-if="!isMobile">
-          <q-icon name="home" class="q-pa-sm"/>首页
+        <div class="q-pa-sm link" v-if="!isMobile">
+          <q-icon name="home " class="q-pa-sm"/>首页
         </div>
-        <div class="q-pa-sm" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="watch_later" class="q-pa-sm"/>时间轴
         </div>
-        <div class="q-pa-sm" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="screen_share" class="q-pa-sm"/>常用网站
         </div>
-        <div class="q-pa-sm" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="note" class="q-pa-sm"/>便签
         </div>
-        <div class="q-pa-sm" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="folder" class="q-pa-sm"/>分类
         </div>
-        <div class="q-pa-sm" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="chat_bubble" class="q-pa-sm"/>留言
         </div>
-        <div class="q-pa-sm" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="reorder" class="q-pa-sm"/>
           <q-menu transition-show="jump-down" transition-hide="jump-up">
             <q-list style="min-width: 100px">
@@ -51,7 +51,7 @@
             </q-list>
           </q-menu>多媒体
         </div>
-        <div class="q-pa-sm" v-if="!isMobile" @click="toAbout">
+        <div class="q-pa-sm link" v-if="!isMobile" @click="toAbout">
           <q-icon name="favorite" class="q-pa-sm"/>关于
         </div>
       </q-toolbar>
@@ -249,6 +249,24 @@ export default {
     font-weight: bold;
     cursor: pointer;
   }
+  .link {
+    cursor: pointer;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      right: 50%; /*下划线从右侧开始显示*/
+      width: 0;
+      height: 100%;
+      border-bottom: 2px solid #49b1f5;
+      transition: 0.2s all linear; /*动画效果*/
+    }
+    &:hover:before {
+      right: 0; /*鼠标滑过时，下划线从右向左移动*/
+      width: 80%; /*同时，下划线宽度从0-100%*/
+    }
+  }
 }
 footer {
   background-image: url("https://s1.ax1x.com/2020/07/04/Nvarv9.jpg");
@@ -266,7 +284,33 @@ footer {
     text-align: center;
   }
 }
+
 .q-card {
   border-radius: 8px !important;
+}
+
+//公用的样式
+.left {
+  flex: 3;
+  .description {
+    /* 多余内容省略号处理-多行 */
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+}
+.left-mobile {
+  .description {
+    /* 多余内容省略号处理-多行 */
+    word-break: break-all;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
 }
 </style>
