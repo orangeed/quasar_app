@@ -116,41 +116,49 @@
             </div>
           </q-card>
           <q-card class="my-card q-mt-lg">
-            <img src="https://cdn.quasar.dev/img/parallax2.jpg">
-
+            <font-awesome-icon
+              :icon="['fas','bullhorn']"
+              class="q-ma-lg text-red "
+              style="font-size:20px"
+            />
+            <span class="right-card-title q-mt-sm">公告</span>
+            <p class="q-pl-lg q-pr-lg q-pb-lg">有事启奏，无事退朝。</p>
+          </q-card>
+          <q-card class="my-card q-mt-lg">
+            <font-awesome-icon
+              :icon="['fas','folder-open']"
+              class="q-ma-lg text-grey-9"
+              style="font-size:20px"
+            />
+            <span class="right-card-title">标签分类</span>
             <q-list>
-              <q-item clickable>
-                <q-item-section avatar>
-                  <q-icon color="primary" name="local_bar"/>
-                </q-item-section>
-
-                <q-item-section>
-                  <q-item-label>Bar XYZ</q-item-label>
-                  <q-item-label caption>Have a drink.</q-item-label>
-                </q-item-section>
+              <q-item clickable v-ripple>
+                <q-item-section class="q-ml-lg">分享</q-item-section>
+                <q-item-section side>2</q-item-section>
               </q-item>
 
-              <q-item clickable>
-                <q-item-section avatar>
-                  <q-icon color="red" name="local_gas_station"/>
-                </q-item-section>
-
-                <q-item-section>
-                  <q-item-label>Gas Station</q-item-label>
-                  <q-item-label caption>Fill your gas tank.</q-item-label>
-                </q-item-section>
-              </q-item>
-
-              <q-item clickable>
-                <q-item-section avatar>
-                  <q-icon color="amber" name="local_movies"/>
-                </q-item-section>
-                <q-item-section>
-                  <q-item-label>Cinema XYZ</q-item-label>
-                  <q-item-label caption>Watch a movie.</q-item-label>
-                </q-item-section>
+              <q-item clickable v-ripple>
+                <q-item-section class="q-ml-lg">生活</q-item-section>
+                <q-item-section side>2</q-item-section>
               </q-item>
             </q-list>
+          </q-card>
+          <q-card class="my-card q-mt-lg">
+            <font-awesome-icon
+              :icon="['fas','calendar-alt']"
+              class="q-ma-lg text-grey-9"
+              style="font-size:20px"
+            />
+            <span class="right-card-title">日期分类</span>
+            <q-item clickable v-ripple>
+              <q-item-section class="q-ml-lg">2020年5月</q-item-section>
+              <q-item-section side>2</q-item-section>
+            </q-item>
+
+            <q-item clickable v-ripple>
+              <q-item-section class="q-ml-lg">2020年6月</q-item-section>
+              <q-item-section side>2</q-item-section>
+            </q-item>
           </q-card>
         </div>
       </div>
@@ -323,6 +331,13 @@ export default {
     z-index: -2;
     width: 100%;
     transition: width 0.5s cubic-bezier(0.82, 1.77, 0.7, 0.56); //三次方贝塞尔函数回弹效果
+  }
+  .my-card {
+    position: relative;
+    .right-card-title {
+      position: absolute;
+      top: 15%;
+    }
   }
 }
 </style>

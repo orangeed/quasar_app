@@ -313,4 +313,7 @@ footer {
     overflow: hidden;
   }
 }
+a {
+  text-decoration: none;
+}
 </style>

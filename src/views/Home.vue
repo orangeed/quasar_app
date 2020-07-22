@@ -1,4 +1,4 @@
-<!--
+
 <template>
   <div class="home">
     <homeImg/>
@@ -223,10 +223,10 @@ export default {
   }
 }
 </style>
- -->
+ 
 
 
-
+<!--
 <template>
   <div class="home">
     <div>
@@ -387,7 +387,7 @@ export default {
       </div>
     </q-page>
     <Notify NotifyText="按 CTRL+ D 键将本页加入书签." color="success" :isShow="isShow"/>
-    <!-- <q-dialog v-model="seamless" seamless position="top">
+   <q-dialog v-model="seamless" seamless position="top">
       <q-card style="width: 350px">
         <q-linear-progress :value="0.6" color="pink"/>
 
@@ -404,10 +404,9 @@ export default {
           <q-btn flat round icon="close" v-close-popup/>
         </q-card-section>
       </q-card>
-    </q-dialog>-->
+    </q-dialog>
   </div>
 </template>
-
 <script>
 export default {
   name: "Home",
@@ -575,4 +574,4 @@ export default {
   }
 }
 </style>
-
+-->
