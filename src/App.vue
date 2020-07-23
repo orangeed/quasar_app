@@ -11,21 +11,24 @@
           v-if="isMobile"
         />
 
-        <q-toolbar-title :class="isMobile ? 'title' : 'title q-ml-md'" @click="toHome">橘子的分享</q-toolbar-title>
+        <q-toolbar-title
+          :class="isMobile ? 'title' : 'title q-ml-md'"
+          @click="$router.push('/')"
+        >橘子的分享</q-toolbar-title>
 
-        <div class="q-pa-sm link" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/')">
           <q-icon name="home " class="q-pa-sm"/>首页
         </div>
-        <div class="q-pa-sm link" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/timeline')">
           <q-icon name="watch_later" class="q-pa-sm"/>时间轴
         </div>
-        <div class="q-pa-sm link" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/website')">
           <q-icon name="screen_share" class="q-pa-sm"/>常用网站
         </div>
-        <div class="q-pa-sm link" v-if="!isMobile">
+        <!-- <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="note" class="q-pa-sm"/>便签
-        </div>
-        <div class="q-pa-sm link" v-if="!isMobile">
+        </div>-->
+        <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/classification')">
           <q-icon name="folder" class="q-pa-sm"/>分类
         </div>
         <div class="q-pa-sm link" v-if="!isMobile">
@@ -33,7 +36,7 @@
         </div>
         <div class="q-pa-sm link" v-if="!isMobile">
           <q-icon name="reorder" class="q-pa-sm"/>
-          <q-menu transition-show="jump-down" transition-hide="jump-up">
+          <q-menu transition-show="scale" transition-hide="scale">
             <q-list style="min-width: 100px">
               <q-item clickable>
                 <q-icon name="insert_photo" class="q-pa-sm"/>
@@ -43,7 +46,6 @@
                 <q-icon name="audiotrack" class="q-pa-sm"/>
                 <q-item-section>音乐</q-item-section>
               </q-item>
-              <q-separator/>
               <q-item clickable>
                 <q-icon name="movie" class="q-pa-sm"/>
                 <q-item-section>影视</q-item-section>
@@ -51,8 +53,15 @@
             </q-list>
           </q-menu>多媒体
         </div>
-        <div class="q-pa-sm link" v-if="!isMobile" @click="toAbout">
+        <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/about')">
           <q-icon name="favorite" class="q-pa-sm"/>关于
+        </div>
+        <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/version')">
+          <font-awesome-icon
+            :icon="['fas','code-branch']"
+            class="q-ma-sm"
+            style="vertical-align: middle"
+          />版本
         </div>
       </q-toolbar>
     </q-header>
@@ -69,7 +78,7 @@
         :bar-style="{ borderRadius: '5px', background: '#cce5f9', width: '7px', opacity: 1 }"
       >
         <q-list padding style="font-size:15px">
-          <q-item clickable v-ripple>
+          <q-item clickable v-ripple @click="$router.push('/')">
             <q-item-section avatar>
               <q-icon name="home" class="q-pa-sm"/>
             </q-item-section>
@@ -77,7 +86,7 @@
             <q-item-section class="q-pl-sm">首页</q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item clickable v-ripple @click="$router.push('/timeline')">
             <q-item-section avatar>
               <q-icon name="watch_later" class="q-pa-sm"/>
             </q-item-section>
@@ -85,7 +94,7 @@
             <q-item-section class="q-pl-sm">时间轴</q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <q-item clickable v-ripple @click="$router.push('/website')">
             <q-item-section avatar>
               <q-icon name="screen_share" class="q-pa-sm"/>
             </q-item-section>
@@ -93,14 +102,14 @@
             <q-item-section class="q-pl-sm">常用网站</q-item-section>
           </q-item>
 
-          <q-item clickable v-ripple>
+          <!-- <q-item clickable v-ripple>
             <q-item-section avatar>
               <q-icon name="note" class="q-pa-sm"/>
             </q-item-section>
 
             <q-item-section class="q-pl-sm">便签</q-item-section>
-          </q-item>
-          <q-item clickable v-ripple>
+          </q-item>-->
+          <q-item clickable v-ripple click="$router.push('/classification')">
             <q-item-section avatar>
               <q-icon name="folder" class="q-pa-sm"/>
             </q-item-section>
@@ -129,7 +138,7 @@
             </q-item>
           </q-expansion-item>
 
-          <q-item clickable v-ripple @click="toAbout">
+          <q-item clickable v-ripple @click="$router.push('/about')">
             <q-item-section avatar>
               <q-icon name="favorite" class="q-pa-sm"/>
             </q-item-section>
@@ -227,20 +236,17 @@ export default {
         this.$store.commit("SET_MOBILE", this.isMobile);
         this.leftDrawer = false;
       }
-    },
-    //跳转到首页
-    toHome() {
-      this.$router.push("/");
-    },
-    //跳转到关于页面
-    toAbout() {
-      this.$router.push("/about");
     }
   }
 };
 </script>
 
 <style lang='scss'>
+.my-card {
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+}
 .head {
   background: rgba($color: #ffffff, $alpha: 0) !important;
   .title {

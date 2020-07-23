@@ -12,6 +12,38 @@ const routes = [{
     }
   },
   {
+    path: '/timeline',
+    name: "Timeline",
+    component: () => import('../views/Timeline.vue'),
+    meta: {
+      title: "时间轴"
+    }
+  },
+  {
+    path: '/website',
+    name: "Website",
+    component: () => import('../views/website.vue'),
+    meta: {
+      title: "常用网站"
+    }
+  },
+  {
+    path: '/classification',
+    name: "classification",
+    component: () => import('../views/classification.vue'),
+    meta: {
+      title: "分类"
+    }
+  },
+  {
+    path: '/version',
+    name: "version",
+    component: () => import('../views/version.vue'),
+    meta: {
+      title: "版本更新记录"
+    }
+  },
+  {
     path: '/about',
     name: 'About',
     component: () => import( /* webpackChunkName: "about" */ '../views/About.vue'),

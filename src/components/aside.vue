@@ -3,53 +3,7 @@
     <q-page>
       <div class="my-row bg-transparent">
         <slot/>
-        <!-- <div :class="$store.state.isMobile ? 'left-mobile' : 'left' ">
-          <div v-if="$store.state.isMobile">
-            <q-card class="my-card" basic flat v-for="(item,index) in articleList" :key="index">
-              <img :src="item.img">
-              <q-card-section>
-                <div class="right-text q-mt-md q-mb-md">
-                  <div class="text-h6">{{item.title}}</div>
-                  <div>
-                    <span>
-                      <q-icon name="date_range"/>
-                      {{item.createTime}}
-                    </span> |
-                    <span>
-                      <q-icon name="loyalty"/>
-                      {{item.tag}}
-                    </span>
-                  </div>
-                  <div class="description">{{item.description}}</div>
-                </div>
-              </q-card-section>
-            </q-card>
-          </div>
-          <div v-else>
-            <q-card class="my-card" basic flat v-for="(item,index) in articleList" :key="index">
-              <q-card-section horizontal>
-                <img class="col-5" :src="item.img">
-                <q-card-section>
-                  <div class="right-text">
-                    <div class="text-h6">{{item.title}}</div>
-                    <div>
-                      <span>
-                        <q-icon name="date_range"/>
-                        {{item.createTime}}
-                      </span> |
-                      <span>
-                        <q-icon name="loyalty"/>
-                        {{item.tag}}
-                      </span>
-                    </div>
-                    <div class="description">{{item.description}}</div>
-                  </div>
-                </q-card-section>
-              </q-card-section>
-            </q-card>
-          </div>
-        </div>-->
-        <div :class="$store.state.isMobile ? 'q-mt-xl' : 'right q-ml-lg'">
+        <div :class="$store.state.isMobile ? 'q-mt-xl mobile-aside' : 'right q-ml-lg'">
           <q-card class="my-card">
             <div class="q-pa-lg">
               <div class="text-center">
@@ -118,7 +72,7 @@
           <q-card class="my-card q-mt-lg">
             <font-awesome-icon
               :icon="['fas','bullhorn']"
-              class="q-ma-lg text-red "
+              class="q-ma-lg text-red"
               style="font-size:20px"
             />
             <span class="right-card-title q-mt-sm">公告</span>
@@ -131,15 +85,15 @@
               style="font-size:20px"
             />
             <span class="right-card-title">标签分类</span>
-            <q-list>
+            <q-list style="margin-top:-20px">
               <q-item clickable v-ripple>
                 <q-item-section class="q-ml-lg">分享</q-item-section>
-                <q-item-section side>2</q-item-section>
+                <q-item-section side class="q-mr-md">2</q-item-section>
               </q-item>
 
               <q-item clickable v-ripple>
                 <q-item-section class="q-ml-lg">生活</q-item-section>
-                <q-item-section side>2</q-item-section>
+                <q-item-section side class="q-mr-md">2</q-item-section>
               </q-item>
             </q-list>
           </q-card>
@@ -150,15 +104,51 @@
               style="font-size:20px"
             />
             <span class="right-card-title">日期分类</span>
-            <q-item clickable v-ripple>
-              <q-item-section class="q-ml-lg">2020年5月</q-item-section>
-              <q-item-section side>2</q-item-section>
-            </q-item>
+            <q-list style="margin-top:-20px">
+              <q-item clickable v-ripple>
+                <q-item-section class="q-ml-lg">2020年5月</q-item-section>
+                <q-item-section side class="q-mr-md">2</q-item-section>
+              </q-item>
 
-            <q-item clickable v-ripple>
-              <q-item-section class="q-ml-lg">2020年6月</q-item-section>
-              <q-item-section side>2</q-item-section>
-            </q-item>
+              <q-item clickable v-ripple>
+                <q-item-section class="q-ml-lg">2020年6月</q-item-section>
+                <q-item-section side class="q-mr-md">2</q-item-section>
+              </q-item>
+            </q-list>
+          </q-card>
+          <q-card class="my-card q-mt-lg">
+            <font-awesome-icon
+              :icon="['fas','chart-line']"
+              class="q-ma-lg text-grey-9"
+              style="font-size:20px"
+            />
+            <span class="right-card-title" style="margin-top:-20px">网站统计</span>
+            <q-list style="margin-top:-20px">
+              <q-item>
+                <q-item-section class="q-ml-lg">文章数量</q-item-section>
+                <q-item-section side class="q-mr-md">2</q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section class="q-ml-lg">本站运行时间</q-item-section>
+                <q-item-section side class="q-mr-md">2</q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section class="q-ml-lg">本站总字数</q-item-section>
+                <q-item-section side class="q-mr-md">2</q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section class="q-ml-lg">本站访客数</q-item-section>
+                <q-item-section side class="q-mr-md">
+                  <span id="busuanzi_value_site_uv"></span>
+                </q-item-section>
+              </q-item>
+              <q-item>
+                <q-item-section class="q-ml-lg">本站总访问量</q-item-section>
+                <q-item-section side class="q-mr-md">
+                  <span id="busuanzi_value_site_pv"></span>
+                </q-item-section>
+              </q-item>
+            </q-list>
           </q-card>
         </div>
       </div>
@@ -168,6 +158,7 @@
 </template>
 
 <script>
+let script;
 export default {
   name: "orange-aside",
   data() {
@@ -186,7 +177,10 @@ export default {
       isShow: false
     };
   },
-
+  mounted() {
+    //引用不蒜子统计
+    script = require("busuanzi.pure.js");
+  },
   create() {},
   methods: {
     github() {
@@ -207,6 +201,14 @@ export default {
         this.isShow = false;
       }, 3000);
       // this.seamless = true;
+    }
+  },
+  //当路由发生改变的时候调用
+  watch: {
+    $route(to, from) {
+      if (to.path != from.path) {
+        script.fetch();
+      }
     }
   }
 };
@@ -338,6 +340,9 @@ export default {
       position: absolute;
       top: 15%;
     }
+  }
+  .mobile-aside {
+    width: 100%;
   }
 }
 </style>

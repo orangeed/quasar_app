@@ -158,10 +158,15 @@ export default {
         method: "get",
         url: "https://v1.hitokoto.cn/"
       }).then(res => {
-        this.sentence = { ...res.data };
-        setTimeout(() => {
-          this.write();
-        }, 1000);
+        console.log("res", res);
+        if (res.data.hitokoto) {
+          this.sentence = { ...res.data };
+          setTimeout(() => {
+            this.write();
+          }, 1000);
+        } else {
+          this.sentence.hitokoto = "人生不像做饭，不能等万事俱备了才下锅";
+        }
       });
     },
     github() {
