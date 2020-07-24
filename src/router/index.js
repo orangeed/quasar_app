@@ -50,6 +50,13 @@ const routes = [{
     meta: {
       title: '关于我'
     }
+  }, {
+    path: '/classificationDetail',
+    name: 'classificationDetail',
+    component: () => import('../views/classificationDetail.vue'),
+    meta: {
+      title: "分类详情"
+    }
   }
 ]
 

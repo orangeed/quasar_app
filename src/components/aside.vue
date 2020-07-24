@@ -325,14 +325,14 @@ export default {
   .bookmark:after {
     width: 0;
     background: #ff7242;
-    transition: width 0.5s;
+    transition: width $time-text;
     overflow: hidden;
     z-index: -2;
   }
   .bookmark:hover:after {
     z-index: -2;
     width: 100%;
-    transition: width 0.5s cubic-bezier(0.82, 1.77, 0.7, 0.56); //三次方贝塞尔函数回弹效果
+    transition: width $time-text cubic-bezier(0.82, 1.77, 0.7, 0.56); //三次方贝塞尔函数回弹效果
   }
   .my-card {
     position: relative;

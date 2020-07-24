@@ -110,7 +110,7 @@ export default {
       .avatar {
         font-size: 16px;
         color: #ffffff;
-        transition: all 0.3s ease-in;
+        transition: all 0$time-head ease-in;
         &:hover {
           transform: rotate(360deg);
           transform-origin: center;

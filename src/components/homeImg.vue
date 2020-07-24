@@ -201,7 +201,7 @@ export default {
   margin-bottom: -2px;
   margin-left: -2px;
   background-color: #ffffff;
-  animation: blink-caret 0.5s step-end infinite;
+  animation: blink-caret $time-text step-end infinite;
 }
 @keyframes blink-caret {
   50% {
@@ -210,7 +210,7 @@ export default {
 }
 // 提示向下动画
 .down {
-  animation: down 1.5s ease infinite;
+  animation: down 1$time-text ease infinite;
 }
 @keyframes down {
   0% {

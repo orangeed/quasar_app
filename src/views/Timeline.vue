@@ -16,11 +16,6 @@
                     <span class="text-h5 text-grey-10">文章总览</span>
                   </template>
                 </q-timeline-entry>
-                <!-- <q-timeline-entry color="orange" icon="article">
-                  <template v-slot:subtitle>
-                    <span class="text-h5 text-grey-10">2020年</span>
-                  </template>
-                </q-timeline-entry>-->
 
                 <q-timeline-entry
                   v-for="(item1,index) in item.list"
@@ -106,7 +101,7 @@ export default {
   .content {
     padding: 50px 40px;
   }
-  
+
   .timeline {
     cursor: pointer;
     .articleList {
@@ -114,12 +109,14 @@ export default {
       .img {
         width: 70px;
         height: 70px;
+        overflow: hidden;
+
         img {
           width: 70px;
           height: 70px;
           object-fit: cover;
           transform: scale(1);
-          transition: transform 0.6s ease 0s;
+          transition: transform $time-text ease 0s;
           &:hover {
             transform: scale(1.2);
           }
@@ -133,11 +130,11 @@ export default {
         .articleList-title {
           font-size: 16px;
           font-weight: 500;
-          transition: all 0.5s;
+          transition: all $time-text;
           &:hover {
             color: #2196f3;
             padding-left: 20px;
-            transition: all 0.5s;
+            transition: all $time-text;
           }
         }
       }
