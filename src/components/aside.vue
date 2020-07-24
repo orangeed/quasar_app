@@ -255,7 +255,7 @@ export default {
       flex: 1;
       // 头像旋转
       .avatar {
-        transition: all 0.3s ease-in;
+        transition: all $time-head ease-in;
         &:hover {
           transform: rotate(360deg);
           transform-origin: center;
