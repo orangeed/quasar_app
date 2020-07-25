@@ -3,13 +3,17 @@ import headImg from './headImg.vue';
 import baseView from './baseView.vue'
 import Notify from './Notify.vue'
 import aside from './aside.vue'
+import articleImg from './articleImg.vue'
+import asideTip from './asideTip.vue'
 
 const componentList = [
     headImg,
     baseView,
     homeImg,
     Notify,
-    aside
+    aside,
+    articleImg,
+    asideTip
 ]
 
 // 添加install方法 （插件方法）

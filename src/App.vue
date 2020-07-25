@@ -38,15 +38,15 @@
           <q-icon name="reorder" class="q-pa-sm"/>
           <q-menu transition-show="scale" transition-hide="scale">
             <q-list style="min-width: 100px">
-              <q-item clickable>
+              <q-item clickable @click="$router.push('/classificationDetail?classification=照片')">
                 <q-icon name="insert_photo" class="q-pa-sm"/>
                 <q-item-section>照片</q-item-section>
               </q-item>
-              <q-item clickable>
+              <q-item clickable @click="$router.push('/classificationDetail?classification=音乐')">
                 <q-icon name="audiotrack" class="q-pa-sm"/>
                 <q-item-section>音乐</q-item-section>
               </q-item>
-              <q-item clickable>
+              <q-item clickable @click="$router.push('/classificationDetail?classification=影视')">
                 <q-icon name="movie" class="q-pa-sm"/>
                 <q-item-section>影视</q-item-section>
               </q-item>
@@ -169,6 +169,7 @@
     >-->
     <q-page-container style="padding-top:0px">
       <router-view/>
+      <asideTip/>
     </q-page-container>
     <footer>
       <div class="footer-wrap">

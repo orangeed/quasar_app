@@ -7,10 +7,10 @@
         <div :class="$store.state.isMobile ? 'left-mobile' : 'left' ">
           <div v-if="$store.state.isMobile">
             <q-card class="my-card" basic flat v-for="(item,index) in articleList" :key="index">
-              <img :src="item.img">
-              <q-card-section>
+              <img :src="item.img" @click="$router.push(`/articleDeatil?id=${item.id}`)">
+              <q-card-section :horizontal="$store.state.isMobile ? undefined : true">
                 <div class="right-text q-mt-md q-mb-md">
-                  <div class="text-h6">{{item.title}}</div>
+                  <div class="text-h6" @click="$router.push(`/articleDeatil?id=${item.id}`)">{{item.title}}</div>
                   <div>
                     <span>
                       <q-icon name="date_range"/>
@@ -29,10 +29,17 @@
           <div v-else>
             <q-card class="my-card" basic flat v-for="(item,index) in articleList" :key="index">
               <q-card-section horizontal>
-                <img class="col-5" :src="item.img">
+                <div class="section-img" @click="$router.push(`/articleDeatil?id=${item.id}`)">
+                  <p>
+                    <img :src="item.img">
+                  </p>
+                </div>
                 <q-card-section>
                   <div class="right-text">
-                    <div class="text-h6">{{item.title}}</div>
+                    <div
+                      class="text-h6 section-title"
+                      @click="$router.push(`/articleDeatil?id=${item.id}`)"
+                    >{{item.title}}</div>
                     <div>
                       <span>
                         <q-icon name="date_range"/>
@@ -63,6 +70,7 @@ export default {
     return {
       articleList: [
         {
+          id: 0,
           title: "这是第一篇文章",
           img: "https://s1.ax1x.com/2020/06/24/NwAQ39.md.jpg",
           createTime: "2020-07-16",
@@ -71,6 +79,7 @@ export default {
             "不知道是多少天了，在无数个难眠的夜晚，我辗转反侧，想有自己的台式电脑，最好是自己组装的，正好，今年刚刚毕业，又赶上了618活动，就开始买买买（虽然自己是在之前两天买的）！ "
         },
         {
+          id: 1,
           title: "这是第二篇文章",
           img: "https://s1.ax1x.com/2020/03/28/GAJpkt.md.jpg",
           createTime: "2020-07-16",
@@ -79,6 +88,7 @@ export default {
             "ask的黄金卡是多久啊是根据哈i按时打卡是大苏打好i收到偶爱的哈克斯的卢卡斯的哈师大那时快大厦的那款是那么，啊啊实打实多名旅客大苏打阿萨，啊 "
         },
         {
+          id: 2,
           title: "这是第三篇文章",
           img: "https://s2.ax1x.com/2020/03/05/3HM2dK.md.jpg",
           createTime: "2020-07-16",
@@ -120,6 +130,38 @@ export default {
 .home {
   .my-card {
     margin-bottom: 30px;
+    .section-img {
+      cursor: pointer;
+
+      p {
+        height: 230px;
+        width: 350px;
+        margin: 0;
+        padding: 0;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      img {
+        height: 230px;
+        width: 350px;
+        object-fit: cover;
+        transform: scale(1);
+        transition: transform $time-img ease 0s;
+        &:hover {
+          transform: scale(1.2);
+        }
+      }
+    }
+    .section-title {
+      cursor: pointer;
+      transition: all $time-head;
+      font-weight: 600;
+      color: #575757;
+      &:hover {
+        color: #2196f3;
+        transition: all $time-head;
+      }
+    }
   }
   .q-img__content > div {
     position: static;
