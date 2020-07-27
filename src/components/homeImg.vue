@@ -153,7 +153,7 @@ export default {
       window.requestAnimationFrame(type);
     },
     getSentence() {
-      this.sentence = {};
+      // this.sentence = {};
       this.$axios({
         method: "get",
         url: "https://v1.hitokoto.cn/"

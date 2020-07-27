@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" @scroll="scroll">
     <q-header class="head" reveal>
       <q-toolbar>
         <q-btn
@@ -169,7 +169,6 @@
     >-->
     <q-page-container style="padding-top:0px">
       <router-view/>
-      <asideTip/>
     </q-page-container>
     <footer>
       <div class="footer-wrap">
@@ -178,6 +177,7 @@
       </div>
     </footer>
     <!-- </q-scroll-area> -->
+    <asideTip :scrollTop="scrollTop"/>
   </q-layout>
 </template>
 
@@ -194,7 +194,8 @@ export default {
       leftDrawerOpen: false,
       screenWidth: document.body.clientWidth,
       isMobile: false,
-      leftDrawer: false
+      leftDrawer: false,
+      scrollTop: 0
     };
   },
 
@@ -216,7 +217,7 @@ export default {
         let that = this;
         setTimeout(function() {
           // 打印screenWidth变化的值
-          // console.log(that.screenWidth);
+          // console.log(this.screenWidth);
           that.timer = false;
         }, 400);
       }
@@ -237,12 +238,39 @@ export default {
         this.$store.commit("SET_MOBILE", this.isMobile);
         this.leftDrawer = false;
       }
+    },
+    scroll() {
+      this.scrollTop = document.documentElement.scrollTop;
+
+      // console.log("scroll", document.documentElement.scrollTop);
     }
   }
 };
 </script>
 
 <style lang='scss'>
+html {
+  scroll-behavior: smooth;
+}
+/*控制整个滚动条*/
+::-webkit-scrollbar {
+  // background-color: lightgray;
+  width: 8px;
+  // height: 10px;
+  background-clip: padding-box;
+}
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  // box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  // box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #49b1f5;
+}
 .my-card {
   height: 100%;
   width: 100%;
