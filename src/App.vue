@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" @scroll="scroll">
+  <q-layout view="lHh Lpr lFf" @scroll="scroll" class="all">
     <q-header class="head" reveal>
       <q-toolbar>
         <q-btn
@@ -252,6 +252,21 @@ export default {
 html {
   scroll-behavior: smooth;
 }
+// body {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0; /* fixed 定位覆盖页面 */
+//   z-index: 9999; /* 层叠放到很高的一个位置，盖在页面上 */
+//   mix-blend-mode: difference; /* 混合模式，反色 */
+//   background-color: #fff; /* 结合混合模式做反色处理的对比色 */
+//   pointer-events: none; /* 作为一个层覆盖在元素上，但不能妨碍页面元素点击，添加一个穿透效果 */
+// }
+.all {
+  background-blend-mode: darken;
+  filter: brightness(80%) grayscale(20%) contrast(1.2);
+}
 /*控制整个滚动条*/
 ::-webkit-scrollbar {
   // background-color: lightgray;
@@ -278,6 +293,7 @@ html {
 }
 .head {
   background: rgba($color: #ffffff, $alpha: 0) !important;
+
   .title {
     font-size: 18px;
     text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.15);

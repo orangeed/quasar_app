@@ -80,10 +80,10 @@ export default {
       refLength: ""
     };
   },
-  created() {
+  created() {},
+  mounted() {
     this.getSentence();
   },
-  mounted() {},
   methods: {
     write() {
       //打字效果插入句子
