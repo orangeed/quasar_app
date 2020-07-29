@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" @scroll="scroll" class="all">
+  <q-layout view="lHh Lpr lFf" @scroll="scroll">
     <q-header class="head" reveal>
       <q-toolbar>
         <q-btn
@@ -31,7 +31,7 @@
         <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/classification')">
           <q-icon name="folder" class="q-pa-sm"/>分类
         </div>
-        <div class="q-pa-sm link" v-if="!isMobile">
+        <div class="q-pa-sm link" v-if="!isMobile" @click="$router.push('/message')">
           <q-icon name="chat_bubble" class="q-pa-sm"/>留言
         </div>
         <div class="q-pa-sm link" v-if="!isMobile">
@@ -116,7 +116,7 @@
 
             <q-item-section class="q-pl-sm">分类</q-item-section>
           </q-item>
-          <q-item clickable v-ripple>
+          <q-item clickable v-ripple  @click="$router.push('/message')">
             <q-item-section avatar>
               <q-icon name="chat_bubble" class="q-pa-sm"/>
             </q-item-section>
@@ -124,15 +124,15 @@
             <q-item-section class="q-pl-sm">留言</q-item-section>
           </q-item>
           <q-expansion-item group="somegroup" icon="reorder" label="多媒体" class="q-pa-sm">
-            <q-item clickable v-ripple class="q-pl-xl">
+            <q-item clickable v-ripple class="q-pl-xl" @click="$router.push('/classificationDetail?classification=照片')">
               <q-icon name="insert_photo" class="q-pa-sm"/>
               <q-item-section class="q-pl-md">照片</q-item-section>
             </q-item>
-            <q-item clickable v-ripple class="q-pl-xl">
+            <q-item clickable v-ripple class="q-pl-xl" @click="$router.push('/classificationDetail?classification=音乐')">
               <q-icon name="audiotrack" class="q-pa-sm"/>
               <q-item-section class="q-pl-md">音乐</q-item-section>
             </q-item>
-            <q-item clickable v-ripple class="q-pl-xl">
+            <q-item clickable v-ripple class="q-pl-xl" @click="$router.push('/classificationDetail?classification=影视')">
               <q-icon name="movie" class="q-pa-sm"/>
               <q-item-section class="q-pl-md">影视</q-item-section>
             </q-item>
@@ -263,10 +263,12 @@ html {
 //   background-color: #fff; /* 结合混合模式做反色处理的对比色 */
 //   pointer-events: none; /* 作为一个层覆盖在元素上，但不能妨碍页面元素点击，添加一个穿透效果 */
 // }
-.all {
-  background-blend-mode: darken;
-  filter: brightness(80%) grayscale(20%) contrast(1.2);
-}
+
+// .all {
+//   background-blend-mode: darken;
+//   filter: brightness(80%) grayscale(20%) contrast(1.2);
+// }
+
 /*控制整个滚动条*/
 ::-webkit-scrollbar {
   // background-color: lightgray;

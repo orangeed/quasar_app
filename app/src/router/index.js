@@ -28,6 +28,14 @@ const routes = [{
     }
   },
   {
+    path: '/message',
+    name: "message",
+    component: () => import('../views/message.vue'),
+    meta: {
+      title: "留言"
+    }
+  },
+  {
     path: '/classification',
     name: "classification",
     component: () => import('../views/classification.vue'),

@@ -4,8 +4,8 @@
     <headImg title="常用网站" imgSrc="https://s1.ax1x.com/2020/04/12/GLA6vd.jpg"/>
     <orange-aside>
       <template>
-        <div :class="$store.state.isMobile ? 'left-mobile' : 'left' " >
-          <q-card class="my-card" basic flat >
+        <div :class="$store.state.isMobile ? 'left-mobile' : 'left' ">
+          <q-card class="my-card" basic flat>
             <q-card-section :class="$store.state.isMobile ? '' : 'content'">
               <div class="bg-blue-1 xian">
                 <div class="q-ml-md q-pt-lg" v-for="(item,index) in websiteList" :key="index">
@@ -125,6 +125,12 @@ export default {
           img: "https://www.ftest.us/favicon.ico",
           alt: "MEET机场",
           title: "MEET机场"
+        },
+        {
+          url: "http://www.nows.fun/",
+          img: "http://www.nows.fun/favicon.ico",
+          alt: "毒鸡汤",
+          title: "毒鸡汤"
         }
       ]
     };
