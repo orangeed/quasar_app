@@ -116,7 +116,7 @@
 
             <q-item-section class="q-pl-sm">分类</q-item-section>
           </q-item>
-          <q-item clickable v-ripple  @click="$router.push('/message')">
+          <q-item clickable v-ripple @click="$router.push('/message')">
             <q-item-section avatar>
               <q-icon name="chat_bubble" class="q-pa-sm"/>
             </q-item-section>
@@ -124,15 +124,30 @@
             <q-item-section class="q-pl-sm">留言</q-item-section>
           </q-item>
           <q-expansion-item group="somegroup" icon="reorder" label="多媒体" class="q-pa-sm">
-            <q-item clickable v-ripple class="q-pl-xl" @click="$router.push('/classificationDetail?classification=照片')">
+            <q-item
+              clickable
+              v-ripple
+              class="q-pl-xl"
+              @click="$router.push('/classificationDetail?classification=照片')"
+            >
               <q-icon name="insert_photo" class="q-pa-sm"/>
               <q-item-section class="q-pl-md">照片</q-item-section>
             </q-item>
-            <q-item clickable v-ripple class="q-pl-xl" @click="$router.push('/classificationDetail?classification=音乐')">
+            <q-item
+              clickable
+              v-ripple
+              class="q-pl-xl"
+              @click="$router.push('/classificationDetail?classification=音乐')"
+            >
               <q-icon name="audiotrack" class="q-pa-sm"/>
               <q-item-section class="q-pl-md">音乐</q-item-section>
             </q-item>
-            <q-item clickable v-ripple class="q-pl-xl" @click="$router.push('/classificationDetail?classification=影视')">
+            <q-item
+              clickable
+              v-ripple
+              class="q-pl-xl"
+              @click="$router.push('/classificationDetail?classification=影视')"
+            >
               <q-icon name="movie" class="q-pa-sm"/>
               <q-item-section class="q-pl-md">影视</q-item-section>
             </q-item>
@@ -214,8 +229,7 @@ export default {
         // 一旦监听到的screenWidth值改变，就将其重新赋给data里的screenWidth
         this.screenWidth = val;
         this.timer = true;
-        let that = this;
-        setTimeout(function() {
+        setTimeout(() => {
           // 打印screenWidth变化的值
           // console.log(this.screenWidth);
           that.timer = false;
@@ -241,8 +255,6 @@ export default {
     },
     scroll() {
       this.scrollTop = document.documentElement.scrollTop;
-
-      // console.log("scroll", document.documentElement.scrollTop);
     }
   }
 };
