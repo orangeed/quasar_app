@@ -173,7 +173,20 @@ export const asyncRoutes = [
   //     }
   //   ]
   // },
-
+  {
+    path: '/vedio',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/vedio'),
+      name: '摄像头',
+      meta: {
+        title: '摄像头',
+        icon: 'icon',
+        noCache: true
+      }
+    }]
+  },
   {
     path: '/icon',
     component: Layout,

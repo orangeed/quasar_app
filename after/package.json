@@ -9,7 +9,6 @@
     "build:prod": "vue-cli-service build",
     "build:stage": "vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
-    "new": "plop",
     "svgo": "svgo -f src/icons/svg --config=src/icons/svgo.yml",
     "test:unit": "jest --clearCache && vue-cli-service test:unit",
     "test:ci": "npm run lint && npm run test:unit"
@@ -41,7 +40,10 @@
     "vue-splitpane": "1.0.4",
     "vuedraggable": "2.20.0",
     "vuex": "3.1.0",
-    "xlsx": "0.14.1"
+    "xlsx": "0.14.1",
+    "asar": "^3.0.3",
+    "electron": "10.1.2",
+    "electron-packager": "^14.2.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "4.4.4",
