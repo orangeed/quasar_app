@@ -232,7 +232,7 @@ export default {
         setTimeout(() => {
           // 打印screenWidth变化的值
           // console.log(this.screenWidth);
-          that.timer = false;
+          this.timer = false;
         }, 400);
       }
     }

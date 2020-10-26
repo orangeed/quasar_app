@@ -179,7 +179,7 @@ export default {
   },
   mounted() {
     //引用不蒜子统计
-    script = require("busuanzi.pure.js");
+    // script = require("busuanzi.pure.js");
   },
   create() {},
   methods: {

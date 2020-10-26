@@ -37,10 +37,6 @@ export default {
       if (navigator.mediaDevices.getUserMedia === undefined) {
         navigator.mediaDevices.getUserMedia = constraints => {
           // 首先，如果有getUserMedia的话，就获得它
-          //   const getUserMedia =
-          //     navigator.getUserMedia ||
-          //     navigator.webkitGetUserMedia ||
-          //     navigator.mozGetUserMedia;
           const getUserMedia =
             navigator.getUserMedia ||
             (navigator.getUserMedia =
@@ -88,17 +84,13 @@ export default {
     // 关闭摄像头
     closeVideo() {
       console.log('srcObject', this.$refs.video.srcObject)
-      if (this.$refs.video.srcObject) {
-        this.$refs.video.srcObject.getTracks().forEach(track => {
-          track.stop()
-          this.$refs.video.srcObject = null
-        })
-      } else {
-        this.$refs.video.src.getTracks().forEach(track => {
-          track.stop()
-          this.$refs.video.src = null
-        })
-      }
+      const srcObject = this.$refs.video.srcObject
+        ? this.$refs.video.srcObject.getTracks()
+        : this.$refs.video.src.getTracks()
+      srcObject.forEach(track => {
+        track.stop()
+        this.$refs.video.src = null
+      })
     },
     // 截图
     screenshot() {
