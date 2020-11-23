@@ -174,6 +174,34 @@ export const asyncRoutes = [
   //   ]
   // },
   {
+    path: '/map',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/map'),
+      name: '地图',
+      meta: {
+        title: '地图',
+        icon: 'icon',
+        noCache: true
+      }
+    }]
+  },
+  {
+    path: '/offlinemap',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/offlinemap'),
+      name: '离线地图',
+      meta: {
+        title: '离线地图',
+        icon: 'icon',
+        noCache: true
+      }
+    }]
+  },
+  {
     path: '/vedio',
     component: Layout,
     children: [{

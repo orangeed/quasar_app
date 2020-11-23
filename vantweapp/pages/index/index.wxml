@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class="container">
+	<view class="userinfo">
+		<button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+		<block wx:else>
+			<image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+			<text class="userinfo-nickname">{{userInfo.nickName}}</text>
+		</block>
+		<van-button type="primary" bindtap="showPopup">主要按钮</van-button>
+	</view>
+	<view class="usermotto">
+		<text class="user-motto">{{motto}}</text>
+	</view>
+	<view>
+		<van-popup show="{{ show }}" bind:close="onClose">
+			<view class="wrapper">
+				<view class="block">
+					<view style="margin-bottom:20rpx;font-weight: bold;">预订说明:</view>
+					<view style="margin-bottom:20rpx;font-weight: bold;">1.每周第一个工作日食堂公示本周净菜及卤味菜单、价格和数量；</view>
+					<view style="margin-bottom:20rpx;font-weight: bold;">2.每周倒数第二个工作日的15点前，接受预订以及取消预订；所有预订额满即止；</view>
+					<view style="margin-bottom:20rpx;font-weight: bold;">3.每周最后一个工作日下班后自取，同时刷卡付费；</view>
+					<view style="margin-bottom:20rpx;font-weight: bold;">4.因故未能提取所订净菜，食堂将根据预订人员名单，数据中心将直接扣除费用，所订净菜不予保留；</view>
+					<view style="margin-bottom:20rpx;font-weight: bold;">5.请慎重预订，及时提取。</view>
+					<van-button type="primary" color="#1296db" disabled="{{isDisabled}}" block bind:click="onClickHide">{{buttonName}}</van-button>
+				</view>
+			</view>
+		</van-popup>
+	</view>
+	<!-- <view>
+		<web-view src="https://orangecj.cn/index.html" bindload="bindload" binderror="binderror"></web-view>
+	</view> -->
+</view>

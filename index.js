@@ -32,5 +32,5 @@ var sortedSquares = function (A) {
 
 };
 
-const arr = [-4, -1, 0, 3, 10]
-sortedSquares(arr)
+// const arr = [-4, -1, 0, 3, 10]
+// sortedSquares(arr)

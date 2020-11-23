@@ -50,6 +50,10 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
+    },
+    externals: {
+      AMap: "AMap",
+      AMapUI: "AMapUI"
     }
   },
   chainWebpack(config) {

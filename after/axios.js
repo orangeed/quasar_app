@@ -116,3 +116,26 @@ const _axios = require('axios')
 // }).then(res => {
 //   console.log(res);
 // })
+// const nums = [8, 1, 2, 2, 3]
+// const max = Math.max(...nums);
+// const arr = new Array(max + 1).fill(0);
+// nums.forEach(num => arr[num]++);
+// let map = {
+//   0: 0
+// };
+// for (let i = 1; i <= max; i++) {
+//   map[i] = map[i - 1] + arr[i - 1];
+// }
+// console.log(nums.map(num => map[num]));
+// return nums.map(num => map[num]);
+
+_axios({
+  url: 'http://192.168.1.88/zjg/4s/web/login/user',
+  method: 'post',
+  data: {
+    password: 'e10adc3949ba59abbe56e057f20f883e',
+    userName: 'admin'
+  }
+}).then(res => {
+  console.log(res);
+})
