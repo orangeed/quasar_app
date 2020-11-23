@@ -3,32 +3,32 @@
   <div class="home">
     <button @click="returnCountry">返回全国</button>
     <div class="mapp">
-      <aMap :reContry="reContry"></aMap>
+      <aMap :re-contry="reContry" />
     </div>
   </div>
 </template>
 <script>
-import aMap from "./com/index";
+import aMap from './com/index'
 
 export default {
-  name: "map",
+  name: 'Map',
   components: { aMap }, // 引入注册
   data() {
     return {
       reContry: true
-    };
+    }
   },
   methods: {
-    //点击全国按钮
+    // 点击全国按钮
     returnCountry() {
-      this.reContry = true;
+      this.reContry = true
       setTimeout(() => {
-        this.reContry = false;
-      }, 500);
-      console.log("reContry", this.reContry);
+        this.reContry = false
+      }, 500)
+      console.log('reContry', this.reContry)
     }
   }
-};
+}
 </script>
 <style scoped lang="scss">
 //地图

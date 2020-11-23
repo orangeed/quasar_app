@@ -1,13 +1,12 @@
 const _axios = require('axios')
 const area = require('./area.js')
-const fs = require('fs');
+const fs = require('fs')
 
-
-let url;
+let url
 
 // 写入jison文件
 const streamFile = (name, data, label) => {
-  let w;
+  let w
   // 写入到身份json文件夹
   // w = fs.createWriteStream(`../json/province/${name}.json`)
   // 写入到城市文件夹
@@ -18,11 +17,11 @@ const streamFile = (name, data, label) => {
   data.pipe(w)
   return new Promise((resolve, reject) => {
     w.on('finish', () => {
-      console.log('json下载完毕!');
+      console.log('json下载完毕!')
       resolve()
     })
     w.on('error', (err) => {
-      console.log(`${label}下载失败，${err}`);
+      console.log(`${label}下载失败，${err}`)
       const path = '../json/area/error.txt'
       mdFile(path, label, err)
       reject()
@@ -34,14 +33,14 @@ const streamFile = (name, data, label) => {
 const mdFile = (path, label, err) => {
   if (path.split('/').includes('success.txt')) {
     fs.appendFile(path, `${label}下载成功。     `, (error) => {
-      if (error) throw error;
-      console.log(`成功已经写入${path}中！`);
-    });
+      if (error) throw error
+      console.log(`成功已经写入${path}中！`)
+    })
   } else {
     fs.appendFile(path, `${label}下载失败，${err}`, (error) => {
-      if (error) throw error;
-      console.log(`错误已经写入${path}中！`);
-    });
+      if (error) throw error
+      console.log(`错误已经写入${path}中！`)
+    })
   }
 }
 
@@ -55,21 +54,20 @@ const dowload = (name, url, label) => {
     // url:'https://geo.datav.aliyun.com/areas_v2/bound/110000_full.json',
     responseType: 'stream'
   }).then(res => {
-    console.log('let success = name + label', name + label);
+    console.log('let success = name + label', name + label)
     if (res.status === 200) {
       streamFile(name, res.data, label)
       const path = '../js/success.txt'
-      let success = name + label
+      const success = name + label
       mdFile(path, success, res)
     } else {
       const path = '../js/error.txt'
-      let error = name + label
-      console.log('失败！', error);
+      const error = name + label
+      console.log('失败！', error)
       mdFile(path, error, res)
     }
   })
 }
-
 
 // 遍历全国的区域代码获取下载链接
 area.forEach(v => {
@@ -87,9 +85,9 @@ area.forEach(v => {
     // dowload(item.value, url)
     // 获取区数据
     item.children.forEach(val => {
-      console.log(val);
+      console.log(val)
       url = `https://geo.datav.aliyun.com/areas_v2/bound/${val.value}.json`
-      console.log('行政区域编码下载链接：', url);
+      console.log('行政区域编码下载链接：', url)
       dowload(val.value, url, val.label)
     })
   })

@@ -1,9 +1,9 @@
 <template>
-  <div id="container"></div>
+  <div id="container" />
 </template>
 <script>
-import AMap from "AMap";
-import AMapUI from "AMapUI";
+import AMap from 'AMap'
+import AMapUI from 'AMapUI'
 
 export default {
   props: {
@@ -17,168 +17,168 @@ export default {
       $tipMarkerContent: null,
       currentAreaNode: null,
       aReContry: this.reContry
-    };
+    }
   },
   mounted() {
-    this.amap = new AMap.Map("container", {
-      defaultCursor: "pointer",
+    this.amap = new AMap.Map('container', {
+      defaultCursor: 'pointer',
       center: [103.714129, 38.150339], // 地图中心点
       zoom: 4, // 地图显示的缩放级别
-      resizeEnable: true, //是否监控地图容器尺寸变化
-      mapStyle: "amap://styles/darkblue" // 地图样式
-    });
-    this.drawArea();
+      resizeEnable: true, // 是否监控地图容器尺寸变化
+      mapStyle: 'amap://styles/darkblue' // 地图样式
+    })
+    this.drawArea()
   },
   methods: {
     drawArea() {
       AMapUI.load(
-        ["ui/geo/DistrictExplorer", "lib/$"],
+        ['ui/geo/DistrictExplorer', 'lib/$'],
         (DistrictExplorer, $) => {
-          //创建一个实例
+          // 创建一个实例
           this.districtExplorer = new DistrictExplorer({
-            eventSupport: true, //打开事件支持
+            eventSupport: true, // 打开事件支持
             map: this.amap
-          });
-          //当前聚焦的区域
-          this.$tipMarkerContent = $('<div class="tipMarker top"></div>');
+          })
+          // 当前聚焦的区域
+          this.$tipMarkerContent = $('<div class="tipMarker top"></div>')
           this.tipMarker = new AMap.Marker({
             content: this.$tipMarkerContent.get(0),
             offset: new AMap.Pixel(0, 0),
             bubble: true
-          });
-          //监听feature的hover事件
+          })
+          // 监听feature的hover事件
           this.districtExplorer.on(
-            "featureMouseout featureMouseover",
+            'featureMouseout featureMouseover',
             (e, feature) => {
               this.toggleHoverFeature(
                 feature,
-                e.type === "featureMouseover",
+                e.type === 'featureMouseover',
                 e.originalEvent ? e.originalEvent.lnglat : null
-              );
+              )
             }
-          );
-          //监听鼠标在feature上滑动
-          this.districtExplorer.on("featureMousemove", e => {
-            //更新提示位置
-            this.tipMarker.setPosition(e.originalEvent.lnglat);
-          });
-          //feature被点击
-          this.districtExplorer.on("featureClick", (e, feature) => {
-            const props = feature.properties;
+          )
+          // 监听鼠标在feature上滑动
+          this.districtExplorer.on('featureMousemove', e => {
+            // 更新提示位置
+            this.tipMarker.setPosition(e.originalEvent.lnglat)
+          })
+          // feature被点击
+          this.districtExplorer.on('featureClick', (e, feature) => {
+            const props = feature.properties
             //  if (props.level === "province") {
             // 只下钻到省一级 （省：province，市：city，县：district）
             // 若是下钻到县一级，那么这个if判断就可以注释掉
-            this.switch2AreaNode(props.adcode);
-            this.aReContry = false;
+            this.switch2AreaNode(props.adcode)
+            this.aReContry = false
             // }
-          });
-          //全国
-          this.switch2AreaNode(100000);
+          })
+          // 全国
+          this.switch2AreaNode(100000)
         }
-      );
+      )
     },
-    //根据Hover状态设置相关样式
+    // 根据Hover状态设置相关样式
     toggleHoverFeature(feature, isHover, position) {
-      this.tipMarker.setMap(isHover ? this.amap : null);
+      this.tipMarker.setMap(isHover ? this.amap : null)
       if (!feature) {
-        return;
+        return
       }
-      const props = feature.properties;
+      const props = feature.properties
       if (isHover) {
-        //更新提示内容
-        this.$tipMarkerContent.html(props.name);
-        //更新位置
-        this.tipMarker.setPosition(position || props.center);
+        // 更新提示内容
+        this.$tipMarkerContent.html(props.name)
+        // 更新位置
+        this.tipMarker.setPosition(position || props.center)
       }
-      //更新相关多边形的样式
+      // 更新相关多边形的样式
       const polys = this.districtExplorer.findFeaturePolygonsByAdcode(
         props.adcode
-      );
+      )
       polys.forEach(elemnt => {
         elemnt.setOptions({
           fillOpacity: isHover ? 0.5 : 0
-        });
-      });
+        })
+      })
     },
-    //绘制某个区域的边界
+    // 绘制某个区域的边界
     renderAreaPolygons(areaNode) {
-      //更新地图视野
+      // 更新地图视野
       if (!this.aReContry) {
-        this.amap.setBounds(areaNode.getBounds(), null, null, true);
+        this.amap.setBounds(areaNode.getBounds(), null, null, true)
       } else {
-        this.amap.setZoom(4);
-        this.amap.setCenter(new AMap.LngLat(103.714129, 38.150339));
+        this.amap.setZoom(4)
+        this.amap.setCenter(new AMap.LngLat(103.714129, 38.150339))
       }
-      //清除已有的绘制内容
-      this.districtExplorer.clearFeaturePolygons();
-      //绘制子区域
+      // 清除已有的绘制内容
+      this.districtExplorer.clearFeaturePolygons()
+      // 绘制子区域
       this.districtExplorer.renderSubFeatures(areaNode, () => {
         return {
-          cursor: "default",
+          cursor: 'default',
           bubble: true,
-          strokeColor: "#fff", //线颜色
-          strokeOpacity: 0.4, //线透明度
-          strokeWeight: 1, //线宽
-          fillOpacity: 0 //填充透明度
-        };
-      });
-      //绘制父区域
+          strokeColor: '#fff', // 线颜色
+          strokeOpacity: 0.4, // 线透明度
+          strokeWeight: 1, // 线宽
+          fillOpacity: 0 // 填充透明度
+        }
+      })
+      // 绘制父区域
       this.districtExplorer.renderParentFeature(areaNode, {
-        cursor: "default",
+        cursor: 'default',
         bubble: true,
-        strokeColor: "#fff", //线颜色
-        strokeOpacity: 1, //线透明度
-        strokeWeight: 1, //线宽
-        fillOpacity: 0 //填充透明度
-      });
+        strokeColor: '#fff', // 线颜色
+        strokeOpacity: 1, // 线透明度
+        strokeWeight: 1, // 线宽
+        fillOpacity: 0 // 填充透明度
+      })
     },
-    //切换区域后刷新显示内容
+    // 切换区域后刷新显示内容
     refreshAreaNode(areaNode) {
-      this.districtExplorer.setHoverFeature(null);
-      this.renderAreaPolygons(areaNode);
+      this.districtExplorer.setHoverFeature(null)
+      this.renderAreaPolygons(areaNode)
     },
-    //切换区域
+    // 切换区域
     switch2AreaNode(adcode, callback) {
-      console.log('adcode',adcode);
+      console.log('adcode', adcode)
       if (
         this.currentAreaNode &&
-        "" + this.currentAreaNode.getAdcode() === "" + adcode
+        '' + this.currentAreaNode.getAdcode() === '' + adcode
       ) {
-        return;
+        return
       }
       this.loadAreaNode(adcode, (error, areaNode) => {
         if (error) {
           if (callback) {
-            callback(error);
+            callback(error)
           }
-          return;
+          return
         }
-        this.currentAreaNode = areaNode;
-        //设置当前使用的定位用节点
-        this.districtExplorer.setAreaNodesForLocating([this.currentAreaNode]);
-        this.refreshAreaNode(areaNode);
+        this.currentAreaNode = areaNode
+        // 设置当前使用的定位用节点
+        this.districtExplorer.setAreaNodesForLocating([this.currentAreaNode])
+        this.refreshAreaNode(areaNode)
         if (callback) {
-          callback(null, areaNode);
+          callback(null, areaNode)
         }
-      });
+      })
     },
-    //加载区域
+    // 加载区域
     loadAreaNode(adcode, callback) {
       this.districtExplorer.loadAreaNode(adcode, (error, areaNode) => {
         if (error) {
           if (callback) {
-            callback(error);
+            callback(error)
           }
-          window.console.error(error);
-          return;
+          window.console.error(error)
+          return
         }
         if (callback) {
-          callback(null, areaNode);
+          callback(null, areaNode)
         }
-      });
+      })
     }
   }
-};
+}
 </script>
 <style lang="scss">
 #container {
