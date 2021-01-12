@@ -24,7 +24,7 @@ module.exports = {
    */
   publicPath: './',
   // outputDir: 'dist',
-  // outputDir: 'D://electron//pack//dist',
+  outputDir: 'D://uniapp//vscode-app//dist',
   assetsDir: 'static',
   // lintOnSave: process.env.NODE_ENV === 'development',
   // 禁用保存时的eslint检查

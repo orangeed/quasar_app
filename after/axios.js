@@ -1,4 +1,7 @@
 const _axios = require('axios')
+// import md5 from 'md5'
+const md5 = require('md5')
+
 
 // _axios({
 //   url: 'http://192.168.113.220:13027/device/platform/',
@@ -129,13 +132,55 @@ const _axios = require('axios')
 // console.log(nums.map(num => map[num]));
 // return nums.map(num => map[num]);
 
+// _axios({
+//   url: 'http://192.168.1.88/zjg/4s/web/login/user',
+//   method: 'post',
+//   data: {
+//     password: 'e10adc3949ba59abbe56e057f20f883e',
+//     userName: 'admin'
+//   }
+// }).then(res => {
+//   console.log(res);
+// })
+// const timestamp = new Date().getTime()
+// const key = 'zxcvbnmasdfghjkl'
+// const sign = md5(timestamp, 'jixin', key)
+// console.log('timestamp', timestamp);
+// console.log('sign', sign)
+// const parasm = {
+//   timestamp,
+//   key,
+//   sign,
+// }
+// _axios({
+//   url: 'http://127.0.0.1:13001/doc/info',
+//   method: 'get',
+//   data: parasm
+// }).then(res => {
+//   console.log(res);
+// })
+// _axios({
+//   url: 'http://183.134.197.66:13010/zjg_3s/version',
+//   method: 'get',
+//   params: {
+//     code: '1',
+//   },
+// }).then(res => {
+//   console.log(res);
+// })
+
+// _axios({
+//   url: 'http://192.168.1.78:13015/static/help/asdas_1607328712.html',
+//   method: 'get',
+// }).then(res => {
+//   console.log(res);
+//   console.log(decodeURI(res.data));
+// })
+
+// h264视频流
 _axios({
-  url: 'http://192.168.1.88/zjg/4s/web/login/user',
-  method: 'post',
-  data: {
-    password: 'e10adc3949ba59abbe56e057f20f883e',
-    userName: 'admin'
-  }
+  url: 'https://www.sample-videos.com/video123/flv/720/big_buck_bunny_720p_1mb.flv',
+  method: 'get',
 }).then(res => {
   console.log(res);
 })

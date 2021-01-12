@@ -1,26 +1,30 @@
 <!-- echats离线地图 -->
 <template>
   <div>
-    <offlineMap />
+    <offlineMap/>
+    <!-- <mapOff/> -->
   </div>
 </template>
 
 <script>
-import offlineMap from './components/offlineMap'
+import offlineMap from "./components/offlineMap";
+import mapOff from "./components/map";
+
 export default {
   components: {
-    offlineMap
+    offlineMap,
+    mapOff
   },
   props: {},
   data() {
-    return {}
+    return {};
   },
   computed: {},
   watch: {},
   created() {},
   mounted() {},
   methods: {}
-}
+};
 </script>
 
 <style scoped lang="scss">

@@ -39,92 +39,92 @@ import tableRouter from './modules/table'
  * all roles can be accessed
  */
 export const constantRoutes = [{
-  path: '/redirect',
-  component: Layout,
-  hidden: true,
-  children: [{
-    path: '/redirect/:path(.*)',
-    component: () => import('@/views/redirect')
-  }]
-},
-{
-  path: '/login',
-  component: () => import('@/views/login'),
-  hidden: true
-},
-{
-  path: '/auth-redirect',
-  component: () => import('@/views/login/auth-redirect'),
-  hidden: true
-},
-{
-  path: '/404',
-  component: () => import('@/views/error-page/404'),
-  hidden: true
-},
-{
-  path: '/401',
-  component: () => import('@/views/error-page/401'),
-  hidden: true
-},
-{
-  path: '/',
-  component: Layout,
-  redirect: '/dashboard',
-  children: [{
-    path: 'dashboard',
-    component: () => import('@/views/dashboard'),
-    name: '首页',
-    meta: {
-      title: '首页',
-      icon: 'dashboard',
-      affix: true
-    }
-  }]
-},
-// {
-//   path: '/documentation',
-//   component: Layout,
-//   children: [
-//     {
-//       path: 'index',
-//       component: () => import('@/views/documentation'),
-//       name: 'Documentation',
-//       meta: { title: 'Documentation', icon: 'documentation', affix: true }
-//     }
-//   ]
-// },
-{
-  path: '/guide',
-  component: Layout,
-  redirect: '/guide/index',
-  children: [{
-    path: 'index',
-    component: () => import('@/views/guide'),
-    name: '引导页',
-    meta: {
-      title: '引导页',
-      icon: 'guide',
-      noCache: true
-    }
-  }]
-},
-{
-  path: '/profile',
-  component: Layout,
-  redirect: '/profile/index',
-  hidden: true,
-  children: [{
-    path: 'index',
-    component: () => import('@/views/profile'),
-    name: '个人资料',
-    meta: {
-      title: '个人资料',
-      icon: 'user',
-      noCache: true
-    }
-  }]
-}
+    path: '/redirect',
+    component: Layout,
+    hidden: true,
+    children: [{
+      path: '/redirect/:path(.*)',
+      component: () => import('@/views/redirect')
+    }]
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/login'),
+    hidden: true
+  },
+  {
+    path: '/auth-redirect',
+    component: () => import('@/views/login/auth-redirect'),
+    hidden: true
+  },
+  {
+    path: '/404',
+    component: () => import('@/views/error-page/404'),
+    hidden: true
+  },
+  {
+    path: '/401',
+    component: () => import('@/views/error-page/401'),
+    hidden: true
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    children: [{
+      path: 'dashboard',
+      component: () => import('@/views/dashboard'),
+      name: '首页',
+      meta: {
+        title: '首页',
+        icon: 'dashboard',
+        affix: true
+      }
+    }]
+  },
+  // {
+  //   path: '/documentation',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/documentation'),
+  //       name: 'Documentation',
+  //       meta: { title: 'Documentation', icon: 'documentation', affix: true }
+  //     }
+  //   ]
+  // },
+  {
+    path: '/guide',
+    component: Layout,
+    redirect: '/guide/index',
+    children: [{
+      path: 'index',
+      component: () => import('@/views/guide'),
+      name: '引导页',
+      meta: {
+        title: '引导页',
+        icon: 'guide',
+        noCache: true
+      }
+    }]
+  },
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    hidden: true,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/profile'),
+      name: '个人资料',
+      meta: {
+        title: '个人资料',
+        icon: 'user',
+        noCache: true
+      }
+    }]
+  }
 ]
 
 /**
@@ -216,6 +216,20 @@ export const asyncRoutes = [
     }]
   },
   {
+    path: '/h264',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/h264'),
+      name: 'h264视频流',
+      meta: {
+        title: 'h264视频流',
+        icon: 'icon',
+        noCache: true
+      }
+    }]
+  },
+  {
     path: '/icon',
     component: Layout,
     children: [{
@@ -240,14 +254,14 @@ export const asyncRoutes = [
       icon: 'el-icon-user-solid'
     },
     children: [{
-      path: 'index',
-      component: () => import('@/views/person/index'),
-      name: '人员列表',
-      meta: {
-        title: '人员管理',
-        icon: 'el-icon-user-solid'
+        path: 'index',
+        component: () => import('@/views/person/index'),
+        name: '人员列表',
+        meta: {
+          title: '人员管理',
+          icon: 'el-icon-user-solid'
+        }
       }
-    }
       // {
       //   path: 'edit/:id(\\d+)',
       //   component: () => import('@/views/example/edit'),
@@ -280,14 +294,14 @@ export const asyncRoutes = [
       icon: 'message'
     },
     children: [{
-      path: 'create',
-      component: () => import('@/views/example/create'),
-      name: '留言列表',
-      meta: {
-        title: '留言管理',
-        icon: 'message'
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: '留言列表',
+        meta: {
+          title: '留言管理',
+          icon: 'message'
+        }
       }
-    }
       // {
       //   path: 'edit/:id(\\d+)',
       //   component: () => import('@/views/example/edit'),
@@ -320,14 +334,14 @@ export const asyncRoutes = [
       icon: 'el-icon-s-help'
     },
     children: [{
-      path: 'create',
-      component: () => import('@/views/example/create'),
-      name: '评论列表',
-      meta: {
-        title: '评论管理',
-        icon: 'edit'
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: '评论列表',
+        meta: {
+          title: '评论管理',
+          icon: 'edit'
+        }
       }
-    }
       // {
       //   path: 'edit/:id(\\d+)',
       //   component: () => import('@/views/example/edit'),
@@ -360,34 +374,34 @@ export const asyncRoutes = [
       icon: 'el-icon-document'
     },
     children: [{
-      path: 'create',
-      component: () => import('@/views/example/create'),
-      name: '新建文章',
-      meta: {
-        title: '新建文章',
-        icon: 'edit'
-      }
-    },
-    {
-      path: 'edit/:id(\\d+)',
-      component: () => import('@/views/example/edit'),
-      name: '编辑文章',
-      meta: {
-        title: '编辑文章',
-        noCache: true,
-        activeMenu: '/example/list'
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: '新建文章',
+        meta: {
+          title: '新建文章',
+          icon: 'edit'
+        }
       },
-      hidden: true
-    },
-    {
-      path: 'list',
-      component: () => import('@/views/example/list'),
-      name: '文章列表',
-      meta: {
-        title: '文章列表',
-        icon: 'list'
+      {
+        path: 'edit/:id(\\d+)',
+        component: () => import('@/views/example/edit'),
+        name: '编辑文章',
+        meta: {
+          title: '编辑文章',
+          noCache: true,
+          activeMenu: '/example/list'
+        },
+        hidden: true
+      },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        name: '文章列表',
+        meta: {
+          title: '文章列表',
+          icon: 'list'
+        }
       }
-    }
     ]
   },
   {
@@ -400,34 +414,34 @@ export const asyncRoutes = [
       icon: 'el-icon-picture'
     },
     children: [{
-      path: 'create',
-      component: () => import('@/views/example/create'),
-      name: '上传照片',
-      meta: {
-        title: '上传照片',
-        icon: 'edit'
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: '上传照片',
+        meta: {
+          title: '上传照片',
+          icon: 'edit'
+        }
+      },
+      // {
+      //   path: 'edit/:id(\\d+)',
+      //   component: () => import('@/views/example/edit'),
+      //   name: '编辑文章',
+      //   meta: {
+      //     title: '编辑文章',
+      //     noCache: true,
+      //     activeMenu: '/example/list'
+      //   },
+      //   hidden: true
+      // },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        name: '照片列表',
+        meta: {
+          title: '照片列表',
+          icon: 'list'
+        }
       }
-    },
-    // {
-    //   path: 'edit/:id(\\d+)',
-    //   component: () => import('@/views/example/edit'),
-    //   name: '编辑文章',
-    //   meta: {
-    //     title: '编辑文章',
-    //     noCache: true,
-    //     activeMenu: '/example/list'
-    //   },
-    //   hidden: true
-    // },
-    {
-      path: 'list',
-      component: () => import('@/views/example/list'),
-      name: '照片列表',
-      meta: {
-        title: '照片列表',
-        icon: 'list'
-      }
-    }
     ]
   },
   {
@@ -440,34 +454,34 @@ export const asyncRoutes = [
       icon: 'el-icon-video-camera-solid'
     },
     children: [{
-      path: 'create',
-      component: () => import('@/views/example/create'),
-      name: '上传视频',
-      meta: {
-        title: '上传视频',
-        icon: 'edit'
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: '上传视频',
+        meta: {
+          title: '上传视频',
+          icon: 'edit'
+        }
+      },
+      // {
+      //   path: 'edit/:id(\\d+)',
+      //   component: () => import('@/views/example/edit'),
+      //   name: '编辑文章',
+      //   meta: {
+      //     title: '编辑文章',
+      //     noCache: true,
+      //     activeMenu: '/example/list'
+      //   },
+      //   hidden: true
+      // },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        name: '视频列表',
+        meta: {
+          title: '视频列表',
+          icon: 'list'
+        }
       }
-    },
-    // {
-    //   path: 'edit/:id(\\d+)',
-    //   component: () => import('@/views/example/edit'),
-    //   name: '编辑文章',
-    //   meta: {
-    //     title: '编辑文章',
-    //     noCache: true,
-    //     activeMenu: '/example/list'
-    //   },
-    //   hidden: true
-    // },
-    {
-      path: 'list',
-      component: () => import('@/views/example/list'),
-      name: '视频列表',
-      meta: {
-        title: '视频列表',
-        icon: 'list'
-      }
-    }
     ]
   },
   {
@@ -480,34 +494,34 @@ export const asyncRoutes = [
       icon: 'el-icon-s-platform'
     },
     children: [{
-      path: 'create',
-      component: () => import('@/views/example/create'),
-      name: '新建网站',
-      meta: {
-        title: '新建网站',
-        icon: 'edit'
+        path: 'create',
+        component: () => import('@/views/example/create'),
+        name: '新建网站',
+        meta: {
+          title: '新建网站',
+          icon: 'edit'
+        }
+      },
+      // {
+      //   path: 'edit/:id(\\d+)',
+      //   component: () => import('@/views/example/edit'),
+      //   name: '编辑文章',
+      //   meta: {
+      //     title: '编辑文章',
+      //     noCache: true,
+      //     activeMenu: '/example/list'
+      //   },
+      //   hidden: true
+      // },
+      {
+        path: 'list',
+        component: () => import('@/views/example/list'),
+        name: '网站列表',
+        meta: {
+          title: '网站列表',
+          icon: 'list'
+        }
       }
-    },
-    // {
-    //   path: 'edit/:id(\\d+)',
-    //   component: () => import('@/views/example/edit'),
-    //   name: '编辑文章',
-    //   meta: {
-    //     title: '编辑文章',
-    //     noCache: true,
-    //     activeMenu: '/example/list'
-    //   },
-    //   hidden: true
-    // },
-    {
-      path: 'list',
-      component: () => import('@/views/example/list'),
-      name: '网站列表',
-      meta: {
-        title: '网站列表',
-        icon: 'list'
-      }
-    }
     ]
   },
 

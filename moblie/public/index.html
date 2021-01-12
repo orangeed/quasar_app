@@ -1,17 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
-    </noscript>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled.
+      Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+</body>
+<script type="text/javascript">
+  // document.addEventListener('plusready', function (a) { //等待plus ready后再调用5+ API：
+  //       // 在这里调用5+ API
+  //       var first = null;
+  //       plus.key.addEventListener('backbutton', function () { //监听返回键
+  //         //首次按键，提示‘再按一次退出应用’
+  //         if (!first) {
+  //           first = new Date().getTime(); //获取第一次点击的时间戳
+  //           // console.log('再按一次退出应用');//用自定义toast提示最好
+  //           // toast('双击返回键退出应用'); //调用自己写的吐丝提示 函数
+  //           plus.nativeUI.toast("再按一次退出应用", {
+  //             duration: 'short'
+  //           }); //通过H5+ API 调用Android 上的toast 提示框
+  //           setTimeout(function () {
+  //             first = null;
+  //           }, 1000);
+  //         } else {
+  //           if (new Date().getTime() - first < 1000) { //获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+  //             plus.runtime.quit(); //退出应用
+  //           }
+  //         }
+  //       }, false);
+  document.addEventListener('plusready', () => { //等待plus ready后再调用5+ API：
+    // 在这里调用5+ API
+    let first = null;
+    const webview = plus.webview.currentWebview();
+    plus.key.addEventListener('backbutton', () => {
+      webview.canBack((e) => {
+        if (e.canBack) {
+          webview.back();
+        } else {
+          //首次按键，提示‘再按一次退出应用’
+          if (!first) {
+            first = new Date().getTime(); //获取第一次点击的时间戳
+            // console.log('再按一次退出应用');//用自定义toast提示最好
+            // toast('双击返回键退出应用'); //调用自己写的吐丝提示 函数
+            plus.nativeUI.toast("再按一次退出应用", {
+              duration: 'short'
+            }); //通过H5+ API 调用Android 上的toast 提示框
+            setTimeout(function () {
+              first = null;
+            }, 1000);
+          } else {
+            if (new Date().getTime() - first < 1000) { //获取第二次点击的时间戳, 两次之差 小于 1000ms 说明1s点击了两次,
+              // plus.runtime.quit(); //退出应用
+              webview.close(); //hide,quit
+            }
+          }
+        }
+      })
+    });
+
+  });
+  // })
+</script>
+
 </html>

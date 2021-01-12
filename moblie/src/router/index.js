@@ -40,7 +40,7 @@ const routes = [{
 ]
 
 const router = new VueRouter({
-  // mode: 'history',
+  mode: 'history',
   // scrollBehavior: () => ({
   //   y: 0
   // }),
