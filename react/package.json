@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "create-react-app": "^4.0.3",
+    "react": "^17.0.1",
+    "react-router": "^5.2.0"
+  }
+}

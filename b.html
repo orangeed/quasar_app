@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // new Promise((resolve, reject) => {
+    //     reject('失败！')
+    // }).then(success => {
+    //     console.log('success:', success);
+    // }, error => {
+    //     console.log('error', error);
+    //     return new Promise((resolve, reject) => {
+    //         resolve('第二个promise')
+    //     })
+    // }).then(success => {
+    //     console.log('上一个promise的then处理结果', success);
+    //     return new Promise((resolve, reject) => {
+    //         resolve('第三个promise')
+    //     })
+    // }, error => {
+    //     console.log('error', error);
+    // }).then(success => {
+    //     console.log('这是第三个promise的then处理结果', success);
+    // })
+    // const timer = (delay = 1000) => {
+    //     return new Promise(resolve => setTimeout(resolve, delay))
+    // }
+    // timer(2000).then(() => {
+    //     console.log('ooangecj.cn');
+    //     return timer()
+    // }).then(() => {
+    //     console.log('aaa');
+    // })
+    let promise = Promise.resolve('orange')
+    promise.then(val => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log(1)
+                resolve()
+            }, 2000);
+        })
+    })
+    .then(val => {
+        return new Promise(resolve => {
+            setTimeout(() => {
+                console.log(2)
+                resolve()
+            }, 2000);
+        })
+    })
+</script>
+
+</html>

@@ -230,6 +230,48 @@ export const asyncRoutes = [
     }]
   },
   {
+    path: '/record',
+    component: Layout,
+    children: [{
+      path: 'index',
+      component: () => import('@/views/record'),
+      name: '录音',
+      meta: {
+        title: '录音',
+        icon: 'icon',
+        noCache: true
+      }
+    }]
+  },
+  {
+    path: '/connection',
+    component: Layout,
+    name: '聊天室',
+    redirect: '/person/index',
+    meta: {
+      title: '聊天室',
+      icon: 'icon',
+      noCache: true
+    },
+    children: [{
+      path: 'index',
+      component: () => import('@/views/connection'),
+      name: '文字聊天',
+      meta: {
+        title: '文字聊天',
+        noCache: true
+      }
+    }, {
+      path: 'audio',
+      component: () => import('@/views/connection/audio.vue'),
+      name: "语音通话",
+      meta: {
+        title: "语音通话",
+        noCache: true
+      }
+    }]
+  },
+  {
     path: '/icon',
     component: Layout,
     children: [{

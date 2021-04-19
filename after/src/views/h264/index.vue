@@ -1,12 +1,11 @@
 <!--  -->
 <template>
   <div>
-    <video
-      src="http://localhost:8080/test"
-      class="video-player vjs-custom-skin"
-      controls="controls"
-    >
-      不支持
+    <video controls class="video">
+      <source
+        src="https://video_shejigao.redocn.com/video/201906/20190613/Redcon_2019061010591414856795726.mp4"
+        type="video/mp4"
+      />
     </video>
   </div>
 </template>
@@ -26,4 +25,8 @@ export default {
 };
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.video {
+  height: 500px;
+}
+</style>
